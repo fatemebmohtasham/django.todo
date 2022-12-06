@@ -1,0 +1,86 @@
+{% extends 'main.html' %}
+{% block content %}
+
+<style>
+
+	body{
+		background-color: #638CB8;
+	}
+
+	input{
+		width:100%;
+		padding: 12px 20px;
+		margin: 8px 0;
+		box-sizing: border-box;
+		
+	}
+
+	input::placeholder {
+	  color: #d3d3d3;
+	}
+
+	.submit{
+		background-color: #6BA3E8;
+		border: none;
+		color: #fff;
+	}
+
+	.container{
+		width:600px;
+		margin: 20px auto;
+		padding:20px;
+		background-color: #fff;
+		border-radius: 3px;
+		box-shadow: 6px 2px 30px 0px rgba(0,0,0,0.75);
+	}
+	.item{
+		background-color: #906abd;
+		margin: 10px;
+		padding:20px;
+		border-radius: 3px;
+		color: #fff;
+		font-size: 16px;
+		border-radius: 3px;
+		box-shadow: 0px -1px 10px -4px rgba(0,0,0,0.75);
+	}
+
+	a{
+		background-color: #ffae19;
+		border-color: #e59400;
+		text-decoration: none;
+		border-radius: 3px;
+	}
+</style>
+<div class="container">
+    <form method="POST" action="">
+      {%csrf_token%}
+      <input type="text" placeholder="write...." name="body"/>
+      <input type="submit" value="Add" class="submit"/>
+      <br/>
+
+
+      {% for list in lists %}
+			<div class="item">
+				<a href="{% url 'edit' list.id %}">edit</a> 
+				<a href="{% url 'delete' list.id %}">delete</a>
+				{% if list.complete == True %}
+			  <del>{{list}}</del>
+			  {% else %}
+			  <span>{{list}}</span>
+			  {% endif %}
+
+			</div>
+      
+    
+      {% endfor %}
+   
+     
+    
+    </form>
+
+   
+</div>
+
+
+
+{% endblock %}

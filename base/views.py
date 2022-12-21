@@ -1,6 +1,7 @@
 from django.shortcuts import render,redirect
 from.models import list
 from.form import listform
+
 # Create your views here.
 def listtodo(request):
   lists=list.objects.all()
